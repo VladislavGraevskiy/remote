@@ -1,0 +1,98 @@
++-------+------------+--------------------------------+----------+--------------------------+--------------+
+| id    | code       | name                           | status   | enabled_external_payment | xml_tracking |
++-------+------------+--------------------------------+----------+--------------------------+--------------+
+|   908 | 24c29b8c07 | КупиКупон                      | active   |                        1 |            1 |
+|   987 | 3a3184f61a | М.Видео                        | active   |                        1 |            0 |
+|  1001 | 4e8640d77b | Lamoda RU                      | active   |                        1 |            0 |
+|  1122 | 40d31547ef | Send Flowers                   | active   |                        1 |            1 |
+|  1350 | 1ebfd6fcfa | МТС                            | active   |                        1 |            0 |
+|  1667 | c188ef9305 | YVES ROCHER                    | active   |     IN PRS                   1 |            0 |
+|  1678 | 8b0fa31d56 | Aviasales.ru                   | active   |                        1 |            1 |
+|  1721 | 3baa9723ff | ЛитРес                         | active   |                        1 |            1 |
+|  2478 | 92c5d6d73b | Pleer                          | active   |                        1 |            0 |
+|  2598 | 02b3e23ee2 | OneTwoTrip                     | active   |                        1 |            0 |
+|  2656 | e37e907be5 | Weatlas                        | active   |                        1 |            0 |
+|  2742 | bcdb53b822 | Lamoda KZ                      | active   |                        1 |            0 |
+|  2778 | 89605512b8 | Lamoda UA                      | active   |                        1 |            0 |
+|  3002 | a89c09321b | Onlinetours                    | active   |                        1 |            0 |
+|  3444 | 29547bf01b | Л'Этуаль                       | active   |                        1 |            0 |
+|  4102 | dc28f2033d | Wildberries RU                 | active   |                        1 |            0 |
+|  4824 | 2b1d489eec | Wer.ru                         | active   |                        1 |            1 |
+|  5165 | e272be4a6f | Wildberries BY                 | active   |                        1 |            0 |
+|  5542 | 88d25d384a | Momondo INT                    | active   |                        1 |            0 |
+|  5793 | 75922924c2 | The Furnish                    | active   |                        1 |            0 |
+|  5908 | 82dcfc7720 | Alpari CIS                     | active   |                        1 |            1 |
+|  5918 | d68796de78 | Kredito24 RU CPS               | active   |                        1 |            0 |
+|  6115 | 16525dc3e8 | Aliexpress INT                 | active   |                        1 |            0 |
+|  7039 | 48420a9af7 | Wildberries KZ                 | active   |                        1 |            0 |
+|  7741 | ce55ef5ec0 | Hotellook                      | active   |                        1 |            0 |
+|  7958 | cb6358ff62 | La Redoute                     | active   |                        1 |            0 |
+|  8574 | 967882f873 | Займи Просто RU CPS            | disabled |                        1 |            0 |
+|  8900 | 02f107ff4c | Platiza RU CPS                 | disabled |                        1 |            0 |
+|  9639 | 9d5b81dec4 | ForexClub CIS                  | active   |                        1 |            0 |
+| 11690 | bf98da4b7f | ВамСвет                        | active   |                        1 |            0 |
+| 12026 | 4ee68e9c3f | Booking.com INT                | active   |                        1 |            0 |
+| 12105 | aca3107f1f | DuMedia                        | active   |                        1 |            0 |
+| 13242 | 4c15c68865 | ozontravelru                   | active   |                        1 |            0 |
+| 13574 | 5f4fd178c0 | Lamoda BY                      | active   |                        1 |            0 |
+| 13769 | 36ba5c1646 | alibaba.com INT                | active   |                        1 |            0 |
+| 14229 | e450810e3f | taobao INT                     | disabled |                        1 |            0 |
+| 14270 | b9b7cd95c8 | Ботва (Old)                    | disabled |                        1 |            0 |
+| 14334 | e4f9ded18d | eBay RU                        | active   |                        1 |            0 |
+| 14394 | 9da2065261 | kassir.ru                      | active   |                        1 |            0 |
+| 14427 | a8cb9fb027 | Music Wars (Old)               | disabled |                        1 |            0 |
+| 14557 | 188cd32d5b | Вся отделка                    | disabled |                        1 |            0 |
+| 14627 | a80d05f527 | Flipkart (CPA) IN              | active   |                        1 |            0 |
+| 14647 | b09e931874 | Спортмастер                    | active   |                        1 |            0 |
+| 14768 | b3b6276061 | Wildberries CashBack RU        | disabled |                        1 |            0 |
+| 14796 | eda54478b2 | Flipkart Install IN            | active   |                        1 |            0 |
+| 14867 | 1461ea4034 | Тинькофф - All Games           | disabled |                        1 |            0 |
+| 14874 | 86a928866a | wildberries_clickunder         | dead     |                        1 |            0 |
+| 14898 | 4395db5d8f | Wildberries CashBack BY        | disabled |                        1 |            0 |
+| 15044 | d4054089ff | Alpari INT                     | active   |                        1 |            1 |
+| 15050 | 23ae1ddd3f | JD.ru                          | active   |                        1 |            0 |
+| 15061 | ca1fdbafd3 | Alpari Binary Options RU CPS   | disabled |                        1 |            1 |
+| 15300 | f348c8039f | biletikaero                    | active   |                        1 |            1 |
+| 15387 | 4f47f3b6f3 | Rentacarfor.me                 | active   |                        1 |            0 |
+| 15787 | b3ffddafcd | Emirates INT                   | active   |                        1 |            0 |
+| 15964 | 14fdedab75 | Zalora SG                      | disabled |          IN PRS              1 |            0 |
+| 16126 | bfda1cbe9e | PrivatBank UA CPL + API        | active   |                        1 |            0 |
+| 16323 | 272970752a | Pay P.S. RU CPS                | active   |                        1 |            0 |
+| 16325 | 44528861b4 | Zaimon RU CPS                  | active   |                        1 |            0 |
+| 16422 | e5239ce555 | Займи Просто RU CPL            | denied   |                        1 |            0 |
+| 16487 | ca1588687c | Online-Zaim RU CPS             | disabled |                        1 |            0 |
+| 16488 | 3c6f07f365 | Womoney RU CPS                 | disabled |                        1 |            0 |
+| 16534 | 64d9e52862 | eBay Worldwide                 | active   |                        1 |            0 |
+| 16804 | 70666dde0a | spb.kassir.ru                  | active   |                        1 |            0 |
+| 16891 | fda6b4e78f | Ssense.com INT                 | active   |                        1 |            0 |
+| 17044 | 3036d378e7 | iHerb.com INT                  | active   |                        1 |            0 |
+| 17258 | b7cb29e75a | Zaimon RU CPL                  | active   |                        1 |            0 |
+| 17322 | 198ac9ed33 | Expedia IN                     | active   |                        1 |            0 |
+| 17328 | 8d5b295c68 | Yota                           | active   |                        1 |            0 |
+| 17403 | 4cd3f0564c | Uber Eats                      | active   |                        1 |            0 |
+| 17513 | a9cb10b052 | Groupon PL                     | active   |                        1 |            0 |
+| 17665 | d9d452ef9c | Marriott RU                    | active   |                        1 |            0 |
+| 17765 | a54f9aa6dd | Fas.st                         | active   |                        1 |            0 |
+| 17789 | 7f2c2ccd0d | Moneylink                      | active   |                        1 |            0 |
+| 17857 | 3f8976b51e | Privat24 UA Mobile             | active   |                        1 |            0 |
+| 17868 | f41a2e38ae | Tripster                       | active   |                        1 |            0 |
+| 17894 | b6a2cdd7f0 | МаксидоМ                       | active   |                        1 |            0 |
+| 17907 | 93a75ea1e8 | Marriott ES                    | active   |                        1 |            0 |
+| 17908 | c4ab180d20 | Marriott FR                    | active   |                        1 |            0 |
+| 18100 | 98c4ae7190 | Souq.com                       | active   |                        1 |            0 |
+| 18216 | 1c5dee7b36 | Panasonic                      | active   |                        1 |            0 |
+| 18234 | ce524098b9 | Zalora TW                      | active   |                        1 |            0 |
+| 18309 | 68c8c3a654 | Ингосстрах RU CPS              | active   |                        1 |            0 |
+| 18341 | 2a6f60cc9e | 12go.asia                      | active   |                        1 |            0 |
+| 18396 | d67109a677 | Interhome                      | active   |                        1 |            0 |
+| 18414 | e42650c96b | Voyagin INT                    | active   |                        1 |            0 |
+| 18553 | 227a8929b9 | Proflingva.ru                  | active   |                        1 |            0 |
+| 18696 | e5d6040c39 | Kiwi.com                       | active   |                        1 |            0 |
+| 18839 | fc8be86a4f | Joybuy.com                     | active   |                        1 |            0 |
+| 18990 | 632d31910f | Monobank UA Mobile             | active   |                        1 |            0 |
+| 19013 | 9c35f69890 | Palladium                      | active   |                        1 |            0 |
+| 19037 | 9281c86ed5 | Intui.travel                   | active   |                        1 |            0 |
++-------+------------+--------------------------------+----------+--------------------------+--------------+
+
+
+c188ef9305 ----- пропустил
