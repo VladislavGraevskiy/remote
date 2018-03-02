@@ -25,7 +25,7 @@ SECRET_KEY = '&ps5*hc9zsa!hacf7su2hxpnk8%7jym&jwh==ufxh=3*7ldc!6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'study',
     'bootstrap4',
+    'rest_framework_swagger',
 ]
 
 MIDDLEWARE = [
@@ -53,11 +54,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'remote.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': ['templates', 'study/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,4 +124,3 @@ USE_TZ = True
 # AUTH_USER_MODEL = 'study.Userprofile'
 
 STATIC_URL = '/static/'
-ALLOWED_HOSTS = '*'

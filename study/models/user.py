@@ -8,8 +8,8 @@ class Userprofile(BaseUser):
         ('teacher', 'Преподаватель'),
         ('administrator', 'Администратор'),
     )
-    user_type = models.CharField('Тип пользовател', choices=USER_TYPE)
-    student_number = models.IntegerField('Номер студенческого')
+    user_type = models.CharField('Тип пользовател', choices=USER_TYPE, max_length=20)
+    student_number = models.IntegerField('Номер студенческого', null=True)
 
     class Meta:
         app_label = 'study'
