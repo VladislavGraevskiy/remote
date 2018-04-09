@@ -31,15 +31,20 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    # 'grappelli',
+    'jet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'study',
+    'remote_control',
     'bootstrap4',
-    'rest_framework_swagger',
+    'datetimewidget',
+    'django_filters',
+    'widget_tweaks',
+    # 'rest_framework_swagger',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +63,7 @@ ROOT_URLCONF = 'remote.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates', 'study/templates'],
+        'DIRS': ['templates', 'remote_control/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -66,6 +71,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
+
             ],
         },
     },
@@ -121,6 +128,30 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-# AUTH_USER_MODEL = 'study.Userprofile'
+# AUTH_USER_MODEL = 'remote_control.Userprofile'
 
 STATIC_URL = '/static/'
+STATIC_ROOT = ''
+
+
+FIXTURE_DIRS = (
+   '/remote/remove_control/fixtures/',
+   '/remote/api/fixtures/',
+)
+
+MIGRATION_MODULES = {
+    'remove_control': 'remove_control.db_migrations'
+}
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "static"),
+#     '/var/www/remote/static/',
+# ]
+# STATICFILES_DIRS = [
+#     '/var/www/remote/static/',
+# ]
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+    '/var/www/remote/static/',
+)
+
+GROUND_AUTH_TOKEN = ''

@@ -2,11 +2,15 @@
 from __future__ import absolute_import, unicode_literals, division, print_function
 
 from django import forms
-from study.constants import (
+from django.forms import ModelForm
+
+from remote_control.constants import (
     CMD_MINIMAL, CMD_NOMINAL, CMD_OPERATING, CMD_ENABLE_BROADCASTING, CMD_DISABLE_BROADCASTING,
     CMD_SET_REAL_TIME, CMD_ENABLE_DEVICE, CMD_DISABLE_DEVICE, CMD_TRANSCEIVER_SELECT, CMD_DEVICE_COMMAND,
     CMD_RESERVE_MAIN_POWER_OFF, CMD_RESERVE_MAIN_POWER_ON, CMD_SOFT_SHUTDOWN
 )
+from remote_control.models.models import Commands
+
 CMD = (
     (CMD_MINIMAL, 'Перейти в режим работы с минимальным энергопотреблением'),
     (CMD_NOMINAL, 'Перейти в штатный режим работы'),
@@ -15,10 +19,21 @@ CMD = (
 
 
 class Modes(forms.Form):
+
     inform = forms.CharField(widget=forms.TextInput(attrs={'class': 'special', 'size': '40', 'wight': '6'}), max_length=1000)
     modes_command = forms.ChoiceField(choices=CMD, label='Комманда')
     # datetime = forms.DateTimeField(widget=forms.DateTimeInput, input_formats='%Y-%m-%d %H:%M:%S')
 
+
+class CommandsForm(ModelForm):
+    command = forms.ChoiceField(choices=Commands.get_command_name(), widget=forms.RadioSelect)
+
+    class Meta:
+        model = Commands
+        fields = ['command', 'category', 'device']
+
+    # def is_valid(self):
+    #     pass
 
    # MainWindow.setWindowTitle(_translate("MainWindow", "Satellite simulator control program", None))
    #      self.execution_date_time_checkBox.setText(_translate("MainWindow", "Выполнить команду сразу при получении", None))

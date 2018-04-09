@@ -1,7 +1,10 @@
-<!--{% load i18n %}-->
+{% load i18n %}
+{% load static %}
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -10,53 +13,89 @@
 
     <title>SPUTNIK</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>    <!-- Bootstrap core CSS -->
-        <!-- Custom styles for this template -->
-    <link href="starter-template.css" rel="stylesheet">
-  </head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-  <body>
-    <!--<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">-->
-      <!--<div class="container">-->
-        <!--<a class="navbar-brand" href="#">SPUTNIK</a>-->
-        <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">-->
-          <!--<span class="navbar-toggler-icon"></span>-->
-        <!--</button>-->
-        <!--&lt;!&ndash;<div class="collapse navbar-collapse" id="navbarResponsive">&ndash;&gt;-->
-          <!--&lt;!&ndash;<ul class="navbar-nav ml-auto">&ndash;&gt;-->
-            <!--&lt;!&ndash;<li class="nav-item">&ndash;&gt;-->
-              <!--&lt;!&ndash;<a class="nav-link" href="#">Sign Up</a>&ndash;&gt;-->
-            <!--&lt;!&ndash;</li>&ndash;&gt;-->
-            <!--&lt;!&ndash;<li class="nav-item">&ndash;&gt;-->
-              <!--&lt;!&ndash;<a class="nav-link" href="#">Log In</a>&ndash;&gt;-->
-            <!--&lt;!&ndash;</li>&ndash;&gt;-->
-          <!--&lt;!&ndash;</ul>&ndash;&gt;-->
-        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-      <!--</div>-->
-    <!--</nav>-->
-    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <a class="navbar-brand" href="#">SPUTNIK</a>
-    </nav>
+    <link id="bootstrap-css" rel="stylesheet" href="{% static "css/bootstrap.css" %}">
+    <script src="{% static "js/bootstrap.js" %}"></script>
 
-        {% block command %}
-		{% endblock command %}
-        {% block main_page %} {% endblock main_page %}
-        {% block sensors %} {% endblock sensors %}
+    {#    <style>body {#}
+    {#        background-image: url("http://delaisait.ucoz.ru/_ph/13/560792267.jpg");#}
+    {#        background-color: #506e79;#}
+    {#    }#}
+    {#    </style>#}
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-  </body>
+</head>
+
+<body>
+
+<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+    <div class="container">
+        <div class="navbar-nav ">
+            <a class="navbar-brand" href="/">SPUTNIK</a>
+            {% if user.is_authenticated %}
+                <ul class="nav navbar-nav">
+            <li><a href="/sensors">Статистика</a></li>
+            <li><a href="/send_command">Удаленное управление</a></li>
+{#            <li class="dropdown">#}
+{#              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>#}
+{#              <ul class="dropdown-menu">#}
+{#                <li><a href="#">Action</a></li>#}
+{#                <li><a href="#">Another action</a></li>#}
+{#                <li><a href="#">Something else here</a></li>#}
+{#                <li role="separator" class="divider"></li>#}
+{#                <li class="dropdown-header">Nav header</li>#}
+{#                <li><a href="#">Separated link</a></li>#}
+{#                <li><a href="#">One more separated link</a></li>#}
+{#              </ul>#}
+{#            </li>#}
+          </ul>
+
+            {% endif %}
+        </div>
+
+        <div class="collapse navbar-collapse ">
+            <ul class="navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+
+
+                            <a href="#" class="dropdown-toggle active"" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false"> <span class="glyphicon glyphicon-user"
+                                                            aria-hidden="true"></span> {{ user.username }} <span
+                                    class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Кабинет</a></li>
+                                <li><a href='/logout'>Выйти</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                {% else %}
+                    <ul class="nav navbar-nav">
+                        <li><a href="/registration">Регистрация</a></li>
+                        <li><a href='/login'>Вход</a></li>
+                    </ul>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    {% block command %} {% endblock command %}
+    {% block main_page %} {% endblock main_page %}
+    {% block sensors %} {% endblock sensors %}
+    {% block registration %} {% endblock registration %}
+    {% block login %} {% endblock login %}
+
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <span class="text-muted">Place sticky footer content here.</span>
+    </div>
+</footer>
+</body>
 </html>

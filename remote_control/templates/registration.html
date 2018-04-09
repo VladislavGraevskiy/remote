@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load widget_tweaks %}
+{% block registration %}
+
+    <div class="container">
+        <div class="row centered-form">
+            <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Зарегестрируйтесь пожалуйста
+                            <small> It's free!</small>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <form action="/registration/" method="post">
+                            {% csrf_token %}
+
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        {{ userprofile.first_name|add_class:"form-control input-sm"|attr:"placeholder:Имя" }}
+
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        {{ userprofile.last_name|add_class:"form-control input-sm"|attr:"placeholder:Фамилия" }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                {{ userprofile.username|add_class:"form-control input-sm"|attr:"placeholder:Username" }}
+                            </div>
+                            <div class="form-group">
+                                {{ userprofile.email|add_class:"form-control input-sm"|attr:"placeholder:Email" }}
+                            </div>
+                            <div class="form-group">
+                                {{ userprofile.user_type|add_class:"form-control input-sm"|attr:"placeholder:Тип пользователя" }}
+                            </div>
+                            <div class="form-group">
+                                {{ userprofile.course|add_class:"form-control input-sm"|attr:"placeholder:Курс" }}
+                            </div>
+                            <div class="form-group">
+                                {{ userprofile.student_number|add_class:"form-control input-sm"|attr:"placeholder:Номер студентиского" }}
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        {{ userprofile.password1|add_class:"form-control input-sm"|attr:"placeholder:Password" }}
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        {{ userprofile.password2|add_class:"form-control input-sm"|attr:"placeholder:Password confirmation" }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input type="submit" value="Register" class="btn btn-info btn-block">
+                            {% if userprofile.errors %}
+                                <div class="row">
+                                    <div class="alert alert-error">
+                                        <h4>Исправте ошибки ниже:</h4>
+                                        {% for field in userprofile %}
+                                            {% if field.errors %}
+                                                {% for error in field.errors %}
+                                                    <div class="alert alert-danger">
+                                                        <a href="#id_{{ field.name }}"
+                                                           class="alert-link">{{ error|escape }}</a>
+                                                    </div>
+                                                {% endfor %}
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        {% if form.non_field_errors %}
+                                            {{ form.non_field_errors }}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+{% endblock %}
+

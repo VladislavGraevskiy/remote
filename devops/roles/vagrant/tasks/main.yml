@@ -1,0 +1,16 @@
+- name: Install base packages
+  apt:
+    name="{{ item }}"
+    update_cache=yes
+  with_items:
+    - git
+    - mercurial
+    - htop
+    - zsh
+    - python-dev
+    - python-virtualenv
+    - mc
+    - curl
+    - gettext
+  tags:
+    - base

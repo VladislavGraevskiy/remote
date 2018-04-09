@@ -1,0 +1,5 @@
+---
+host: "{{ hosts | default('remote') }}"
+app_user: vagrant
+app_virtualenv_directory: /home/vagrant/.pyenv/versions/remote/
+root_user: vagrant

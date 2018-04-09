@@ -1,0 +1,72 @@
+[
+  {
+    "model": "remote_control.commands",
+    "pk": 1,
+    "fields": {
+      "command": "MODE_MIN",
+      "name": "\u0420\u0435\u0436\u0438\u043c \u043c\u0438\u043d\u0438\u043c\u0430\u043b\u044c\u043d\u043e\u0433\u043e \u044d\u043d\u0435\u0440\u0433\u043e\u043f\u043e\u0442\u0440\u0435\u0431\u043b\u0435\u043d\u0438\u044f",
+      "category": "modes_of_operation",
+      "device": []
+    }
+  },
+  {
+    "model": "remote_control.commands",
+    "pk": 2,
+    "fields": {
+      "command": "MODE_OPERATING",
+      "name": "\u0428\u0442\u0430\u0442\u043d\u044b\u0439 \u0440\u0435\u0436\u0438\u043c \u0440\u0430\u0431\u043e\u0442\u044b",
+      "category": "modes_of_operation",
+      "device": []
+    }
+  },
+  {
+    "model": "remote_control.commands",
+    "pk": 3,
+    "fields": {
+      "command": "MODE_OR_AND_ST",
+      "name": "\u0420\u0435\u0436\u0438\u043c \u0440\u0430\u0431\u043e\u0442\u044b \u0441 \u0443\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u0430\u043c\u0438 \u043e\u0440\u0438\u0435\u043d\u0442\u0430\u0446\u0438\u0438 \u0438 \u0441\u0442\u0430\u0431\u0438\u043b\u0438\u0437\u0430\u0446\u0438\u0438",
+      "category": "modes_of_operation",
+      "device": []
+    }
+  },
+  {
+    "model": "remote_control.commands",
+    "pk": 4,
+    "fields": {
+      "command": "MAIN_TURN_ON",
+      "name": "\u0412\u043a\u043b\u044e\u0447\u0438\u0442\u044c \u043e\u0441\u043d\u043e\u0432\u043d\u043e\u0439 \u0411\u041a",
+      "category": "on-board_compute",
+      "device": []
+    }
+  },
+  {
+    "model": "remote_control.commands",
+    "pk": 5,
+    "fields": {
+      "command": "MAIN_TURN_OFF",
+      "name": "\u0412\u044b\u043a\u043b\u044e\u0447\u0438\u0442\u044c \u043e\u0441\u043d\u043e\u0432\u043d\u043e\u0439 \u0411\u041a",
+      "category": "on-board_compute",
+      "device": []
+    }
+  },
+  {
+    "model": "remote_control.commands",
+    "pk": 6,
+    "fields": {
+      "command": "AUX_TURN_OFF",
+      "name": "\u0412\u044b\u043a\u043b\u044e\u0447\u0438\u0442\u044c \u0440\u0435\u0437\u0435\u0440\u0432\u043d\u044b\u0439 \u0411\u041a",
+      "category": "on-board_compute",
+      "device": []
+    }
+  },
+  {
+    "model": "remote_control.commands",
+    "pk": 7,
+    "fields": {
+      "command": "AUX_TURN_ON",
+      "name": "\u0412\u043a\u043b\u044e\u0447\u0438\u0442\u044c \u0440\u0435\u0437\u0435\u0440\u0432\u043d\u044b\u0439 \u0411\u041a",
+      "category": "on-board_compute",
+      "device": []
+    }
+  }
+]
