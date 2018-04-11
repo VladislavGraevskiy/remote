@@ -31,24 +31,24 @@
 <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
     <div class="container">
         <div class="navbar-nav ">
-            <a class="navbar-brand" href="/">SPUTNIK</a>
+            <a class="navbar-brand " href="/"><img height="30px" src="{% static "logo.png" %}"></a>
             {% if user.is_authenticated %}
                 <ul class="nav navbar-nav">
-            <li><a href="/sensors">Статистика</a></li>
-            <li><a href="/send_command">Удаленное управление</a></li>
-{#            <li class="dropdown">#}
-{#              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>#}
-{#              <ul class="dropdown-menu">#}
-{#                <li><a href="#">Action</a></li>#}
-{#                <li><a href="#">Another action</a></li>#}
-{#                <li><a href="#">Something else here</a></li>#}
-{#                <li role="separator" class="divider"></li>#}
-{#                <li class="dropdown-header">Nav header</li>#}
-{#                <li><a href="#">Separated link</a></li>#}
-{#                <li><a href="#">One more separated link</a></li>#}
-{#              </ul>#}
-{#            </li>#}
-          </ul>
+                    <li><a href="/sensors">Статистика</a></li>
+                    <li><a href="/send_command">Удаленное управление</a></li>
+                    {#            <li class="dropdown">#}
+                    {#              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>#}
+                    {#              <ul class="dropdown-menu">#}
+                    {#                <li><a href="#">Action</a></li>#}
+                    {#                <li><a href="#">Another action</a></li>#}
+                    {#                <li><a href="#">Something else here</a></li>#}
+                    {#                <li role="separator" class="divider"></li>#}
+                    {#                <li class="dropdown-header">Nav header</li>#}
+                    {#                <li><a href="#">Separated link</a></li>#}
+                    {#                <li><a href="#">One more separated link</a></li>#}
+                    {#              </ul>#}
+                    {#            </li>#}
+                </ul>
 
             {% endif %}
         </div>
@@ -62,13 +62,15 @@
 
 
                             <a href="#" class="dropdown-toggle active"" data-toggle="dropdown" role="button"
-                               aria-haspopup="true"
-                               aria-expanded="false"> <span class="glyphicon glyphicon-user"
-                                                            aria-hidden="true"></span> {{ user.username }} <span
-                                    class="caret"></span></a>
+                            aria-haspopup="true"
+                            aria-expanded="false"> <span class="glyphicon glyphicon-user"
+                                                         aria-hidden="true"></span> {{ user.username }} <span
+                                class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Кабинет</a></li>
-                                <li><a href='/logout'>Выйти</a></li>
+                                <li><a href="#"><span class="glyphicon glyphicon-home"
+                                                            aria-hidden="true"></span> Кабинет</a></li>
+                                <li><a href='/logout'><span class="glyphicon glyphicon-log-out"
+                                                            aria-hidden="true"></span> Выйти</a></li>
                             </ul>
                         </li>
                     </ul>

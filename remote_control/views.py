@@ -58,6 +58,7 @@ def main_page(request):
 
 @check_authorization
 def sensors(request):
+
     f = TelemetryFilter(request.GET, queryset=Telemetry.objects.all())
 
     # column2d = FusionCharts("column2d", "ex1", "684", "476", "chart-1", "json",
