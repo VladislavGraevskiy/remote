@@ -26,9 +26,13 @@ class Modes(forms.Form):
 
 
 class CommandsForm(ModelForm):
-    command = forms.ChoiceField(choices=Commands.get_command_name(), widget=forms.RadioSelect,)
+    command = forms.ChoiceField(widget=forms.RadioSelect)
     device = forms.CharField(max_length=20, required=False)
     argument = forms.CharField(max_length=20, required=False)
+
+    def __init__(self, trust_level, *args, **kwargs):
+        super(CommandsForm, self).__init__(*args, **kwargs)
+        self.fields['command'].choices =Commands.get_command_name(trust_level)
 
     class Meta:
         model = Commands

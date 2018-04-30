@@ -3,6 +3,7 @@ from datetime import timedelta
 from django.contrib.postgres.forms import RangeWidget
 from django.db import models
 import django_filters
+from django.db.models import Q
 from django_filters.widgets import RangeWidget
 from django_filters.filters import ChoiceFilter, DateTimeFromToRangeFilter
 
@@ -73,8 +74,8 @@ class Device(models.Model):
     name = models.CharField(max_length=100)
 
 SYSTEM = (
-    ('0', 'основная'),
-    ('1', 'резервная'),
+    ('0', 'Основная'),
+    ('1', 'Резервная'),
 )
 
 
@@ -95,8 +96,12 @@ class Commands(models.Model):
         return self.name
 
     @staticmethod
-    def get_command_name():
-        return Commands.objects.all().values_list('command', 'name')
+    def get_command_name(trust_level=1):
+        return Commands.objects.filter(
+            trust_level__lte=trust_level
+        ).values_list(
+            'command', 'name'
+        )
 
 
 class Request(models.Model):
