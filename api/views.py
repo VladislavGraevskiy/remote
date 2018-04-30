@@ -2,6 +2,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 
+from remote_control.decorators import  decorator_check_auth_token
 from remote_control.models.models import Request, Response
 
 
@@ -13,6 +14,7 @@ def test(request):
 
 
 @csrf_exempt
+@decorator_check_auth_token('answer')
 def answer(request):
     json_data = json.loads(request.body.decode())
     cid = json_data['data']['cid']

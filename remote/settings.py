@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'remote_control',
+    'api',
     'bootstrap4',
     'datetimewidget',
     'django_filters',
