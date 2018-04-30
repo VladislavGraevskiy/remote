@@ -143,6 +143,9 @@ class SessionRequests(models.Model):
     request = models.ManyToManyField(Request)
 
 
+class RawData(models.Model):
+    response_datetime = models.DateTimeField(auto_now=True)
+    raw_data = models.CharField(max_length=5000)
 
 
 

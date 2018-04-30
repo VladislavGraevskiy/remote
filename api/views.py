@@ -1,9 +1,10 @@
+from django.db import IntegrityError
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 
-from remote_control.decorators import  decorator_check_auth_token
-from remote_control.models.models import Request, Response
+from remote_control.decorators import decorator_check_auth_token
+from remote_control.models.models import Request, Response, RawData
 
 
 def test(request):
@@ -14,18 +15,44 @@ def test(request):
 
 
 @csrf_exempt
-@decorator_check_auth_token('answer')
-def answer(request):
-    json_data = json.loads(request.body.decode())
-    cid = json_data['data']['cid']
-    answer = json_data['data']['raw_data']
-
-    request_obj = Request.objects.filter(cid=str(cid))[0]
-    print(request_obj)
-    Response.objects.create(response_body=answer, request=request_obj)
-
-    print(json_data)
-    if request.POST:
-       print(request)
+@decorator_check_auth_token('telemetry')
+def telemetry(request):
+    if request.body:
+        json_data = json.loads(request.body.decode())
+        telemetry_data = json_data.get('data')
+        RawData.objects.create(raw_data=telemetry_data)
 
     return JsonResponse({'status': 'ok'})
+
+
+@csrf_exempt
+@decorator_check_auth_token('answer')
+def answer(request):
+    return_json = {
+        'status': 'ok'
+    }
+    if request.body:
+        json_data = json.loads(request.body.decode())
+
+        answer_data = json_data.get('data', {})
+        cid = answer_data.get('cid')
+        answer_raw_data = answer_data.get('raw_data')
+
+        if cid and answer_data:
+            request_obj = Request.objects.filter(cid=str(cid))[0]
+            try:
+                Response.objects.create(
+                    response_body=answer_raw_data, request=request_obj
+                )
+            except IntegrityError:
+                return_json = {
+                    'status': 'failed',
+                    'message': 'response to request already exists'
+                }
+        else:
+            return_json = {
+                'status': 'failed',
+                'message': 'wrong data'
+            }
+
+    return JsonResponse(data=return_json)
