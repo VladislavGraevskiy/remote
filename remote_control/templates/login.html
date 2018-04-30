@@ -2,7 +2,17 @@
 {% load i18n %}
 {% load widget_tweaks %}
 {% block login %}
-
+    {% load static %}
+    {% load staticfiles %}
+    <style>body {
+        background-image: url({% static "/cosmo.jpg" %});
+        -moz-background-size: 100%; /* Firefox 3.6+ */
+        -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+        -o-background-size: 100%; /* Opera 9.6+ */
+        background-size: 100%; /* Современные браузеры */
+    {#            background-color: #506e79;#}
+    }
+    </style>
     <div class="row centered-form">
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
             <div class="panel panel-default">
@@ -20,7 +30,10 @@
                         </div>
 
                         <input type="submit" value="Вход" class="btn btn-info btn-block">
-                        <p class="pull-right">или <a href="/registration">зарегестрируйтесь</a></p>
+
+                        <div class="pull-right">или <button class="btn btn-link" href="/registration"><span class="glyphicon glyphicon-user"
+                                                                                aria-hidden="true"></span>
+                            зарегестрируйтесь</button></div>
                     </form>
                     {% if form.errors %}
                         <div class="row">

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'datetimewidget',
     'django_filters',
     'widget_tweaks',
+    'django_tables2',
     # 'rest_framework_swagger',
 ]
 
@@ -164,3 +165,6 @@ STATICFILES_DIRS = (
 )
 
 GROUND_AUTH_TOKEN = ''
+
+BSU_GROUND_TOKEN = '3c34881f3fd502343fe23c24e35e605c3a34df02'
+BSU_GROUND_URL = 'http://10.135.3.194:5000'

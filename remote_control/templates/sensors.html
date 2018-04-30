@@ -89,10 +89,27 @@
                         <div id="chart-1">{{ output|safe }}</div>
                     </div>
                 </div>
-                <div class="card-footer text-muted">
-                    Posted on January 1, 2017 by
-                    <a href="#">Start Bootstrap</a>
-                </div>
+                    {% if f.has_other_pages %}
+                    <ul class="pagination">
+                        {% if f.has_previous %}
+                            <li><a class="page-link" href="?page={{ f.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                            <li class="disabled"><span>&laquo;</span></li>
+                        {% endif %}
+                        {% for i in f.paginator.page_range %}
+                            {% if f.number == i %}
+                                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                            {% else %}
+                                <li><a class="active" href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if f.has_next %}
+                            <li><a class="page-link" href="?page={{ f.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                            <li class="disabled"><span>&raquo;</span></li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
             </div>
         </div>
         <div class="col-md-4">
@@ -101,6 +118,7 @@
                 <div class="panel-body">
                     <div class="container-fluid">
                         <form action="" method="get">
+                                                    {% csrf_token %}
                             <ul class="list-group">
                                 <div class="row">
                                     <p class="text">По дате:</p>

@@ -1,41 +1,56 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% block command %}
-{% load widget_tweaks %}
+    {% load widget_tweaks %}
+    <script>
+        $(document).ready(function () {
 
-    <div class="container">
-        {#        <div class="starter-template">#}
-        {#            <h1>ТУТ можно будет отправлять комманд</h1>#}
-        {##}
-        {#            <select>#}
-        {#                {% for command in commands %}#}
-        {#                    <option value="{{ command.command }}">#}
-        {#                        {{ command.name }}#}
-        {##}
-        {#                    </option>#}
-        {#                {% endfor %}#}
-        {#            </select>#}
-        {#        </div>#}
-    </div>
+            $("#device_control").hide();
+            $('[id=command_list]').change(function () {
+                if ($("input:radio:checked").val() === 'DEVICE_COMMAND') {
+                    $("#device_control").show();
+                }
+                else {
+                    $("#device_control").hide();
+                }
+            });
+        });
+    </script>
     <div class="row">
         <div class="col-md-8">
             <div class="panel panel-info">
                 <h2 class="panel-heading">Информация</h2>
-                {% for i in info %}
-                    <p>{{ i.send_datetime }}: {{ i.command }}</p>
-                {% endfor %}
+                <div class="panel-body">
+                    {% for i in info %}
+                        <div class="panel">
+                            <p>Запрос: {{ i.get_request_data}}</p>
+                            <p>Ответ: {{ i.response.response_body }}</p>
+                        </div>
+                    {% endfor %}
 
-
+                </div>
+                {% if info.has_other_pages %}
+                    <ul class="pagination">
+                        {% if info.has_previous %}
+                            <li><a class="page-link" href="?page={{ info.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                            <li class="disabled"><span>&laquo;</span></li>
+                        {% endif %}
+                        {% for i in info.paginator.page_range %}
+                            {% if info.number == i %}
+                                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                            {% else %}
+                                <li><a class="active" href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if info.has_next %}
+                            <li><a class="page-link" href="?page={{ info.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                            <li class="disabled"><span>&raquo;</span></li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
             </div>
-            {#          <!-- Pagination -->#}
-            {#          <ul class="pagination justify-content-center mb-4">#}
-            {#            <li class="page-item">#}
-            {#              <a class="page-link" href="#">← Older</a>#}
-            {#            </li>#}
-            {#            <li class="page-item disabled">#}
-            {#              <a class="page-link" href="#">Newer →</a>#}
-            {#            </li>#}
-            {#          </ul>#}
         </div>
         <div class="col-md-4">
             <div class="panel panel-info">
@@ -44,22 +59,43 @@
                     <div class="container-fluid">
                         <form action="/send_command/" method="post">{% csrf_token %}
 
-                             <div class="row">
-                                <div class="form-group">
-                                    Категория команды: {{ form.category|attr:"style:width:200px;" }}
-                                </div>
-                            </div>
-{#                            <div class="row">#}
-{#                                <div class="form-group">#}
-{#                                    Категория команды: {{ form.device|attr:"style:width:200px;" }}#}
-{#                                </div>#}
-{#                            </div>#}
+                            {#                             <div class="row">#}
+                            {#                                <div class="form-group">#}
+                            {#                                    Категория команды: {{ form.category|attr:"style:width:200px;" }}#}
+                            {#                                </div>#}
+                            {#                            </div>#}
+                            {#                            <div class="row">#}
+                            {#                                <div class="form-group">#}
+                            {#                                    Категория команды: {{ form.device|attr:"style:width:200px;" }}#}
+                            {#                                </div>#}
+                            {#                            </div>#}
                             <div class="row">
-                                <div class="form-group">
-                                    Комманда: {{ form.command}}
+                                <div class="form-group" id="command_list">
+
+                                    <div class="row panel-heading">
+                                        <p>Комманды:</p>
+                                    </div>
+                                    {% for co in form.command %}
+                                        {{ co }}
+                                    {% endfor %}
                                 </div>
                             </div>
+                            <div id="device_control">
+                                <div class="row panel-heading">
+                                    <p>Дополнительные параметры:</p>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group ">
+                                        <p> Устройства: {{ form.device }}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <p>Аргумент: {{ form.argument }}</p>
+                                    </div>
+                                </div>
 
+                            </div>
                             <input type="submit" value="Отправить" class="btn btn-info btn-block">
                         </form>
                     </div>
@@ -67,6 +103,5 @@
             </div>
         </div>
     </div>
-
     </div>
 {% endblock %}

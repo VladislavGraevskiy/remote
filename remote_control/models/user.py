@@ -15,3 +15,8 @@ class Userprofile(BaseUser):
     student_number = models.IntegerField('Номер студенческого')
     course = models.CharField('Курс', choices=Courses, max_length=2, null=True)
     registration_approved = models.BooleanField('Регистрация одобрена?', default=False)
+    trust_level = models.IntegerField('Уровень доверия', default=3)
+
+    def pre_save(self):
+        pass
+

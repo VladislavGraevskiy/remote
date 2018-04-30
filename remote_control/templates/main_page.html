@@ -1,40 +1,24 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% block main_page %}
-<main role="main">
-
-      <!-- Main jumbotron for a primary marketing message or call to action -->
-      <div class="jumbotron">
-        <div class="container ">
-          <h1 class="display-5">Иммитатор спутника БГУ</h1>
-          <p>Это заглавная страника проекта</p>
-          <p><a class="btn btn-primary btn-lg " href="#" role="button">О проекте</a></p>
-        </div>
-      </div>
-         <!--</div> &lt;!&ndash; /container &ndash;&gt;-->
-    <script type="text/javascript">
-timeend= new Date();
-// IE и FF по разному отрабатывают getYear()
-timeend= new Date(timeend.getYear()>1900?(timeend.getYear()+1):(timeend.getYear()+1901),0,1);
-// для задания обратного отсчета до определенной даты укажите дату в формате:
-// timeend= new Date(ГОД, МЕСЯЦ-1, ДЕНЬ);
-// Для задания даты с точностью до времени укажите дату в формате:
-// timeend= new Date(ГОД, МЕСЯЦ-1, ДЕНЬ, ЧАСЫ-1, МИНУТЫ);
-function time() {
-    today = new Date();
-    today = Math.floor((timeend-today)/1000);
-    tsec=today%60; today=Math.floor(today/60); if(tsec<10)tsec='0'+tsec;
-    tmin=today%60; today=Math.floor(today/60); if(tmin<10)tmin='0'+tmin;
-    thour=today%24; today=Math.floor(today/24);
-    timestr=tmin+":"+tsec;
-    document.getElementById('t').innerHTML=timestr;
-    window.setTimeout("time()",1000);
-}
-</script>
-<body onload="time()">
-
-
-<p>Осталось <span id="t" style="font-size:20px"></span></p>
-
-</main>
+    {% load static %}
+    {% load staticfiles %}
+    <link rel="stylesheet"
+          href="{% static "/own.css" %}"/>
+    </head>
+    <style>body {
+        background-image: url({% static "/cosmo.jpg" %});
+        -moz-background-size: 100%; /* Firefox 3.6+ */
+        -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+        -o-background-size: 100%; /* Opera 9.6+ */
+        background-size: 100%; /* Современные браузеры */
+                background-color: #506e79;
+    }
+    </style>
+    <div class="jumbotron">
+        <h1 class="display-5">Иммитатор спутника БГУ</h1>
+        <p>Удаленное управление имитатора СМКА</p>
+        {#          <p><a class="btn btn-primary btn-lg " href="#" role="button">О проекте</a></p>#}
+        {#        </div>#}
+    </div>
 {% endblock %}

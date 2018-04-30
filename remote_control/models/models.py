@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from django.contrib.postgres.forms import RangeWidget
 from django.db import models
 import django_filters
@@ -70,12 +72,20 @@ COMMANDS_CATEGORY = (
 class Device(models.Model):
     name = models.CharField(max_length=100)
 
+SYSTEM = (
+    ('0', 'основная'),
+    ('1', 'резервная'),
+)
+
 
 class Commands(models.Model):
     command = models.CharField(max_length=100)
     name = models.CharField(max_length=100, blank=True)
     category = models.CharField(max_length=100, choices=COMMANDS_CATEGORY)
-    device = models.ManyToManyField(Device, null=True, blank=True)
+    enable_device = models.BooleanField(default=False)
+    enable_argument = models.BooleanField(default=False)
+    system = models.CharField(max_length=20, choices=SYSTEM,  null=True, blank=True)
+    trust_level = models.IntegerField(default=1)
 
     class Meta:
         verbose_name = 'Комманда'
@@ -92,12 +102,28 @@ class Commands(models.Model):
 class Request(models.Model):
     user = models.ForeignKey(Userprofile, on_delete=models.DO_NOTHING)
     command = models.ForeignKey(Commands, on_delete=models.DO_NOTHING)
-    cid = models.IntegerField(null=True)
+    cid = models.CharField(max_length=100, null=True)
     send_datetime = models.DateTimeField(auto_now=True)
+    device = models.CharField(max_length=20, null=True, blank=True)
+    argument = models.CharField(max_length=20, null=True, blank=True)
+    time_of_execution = models.DateTimeField(null=True, blank=True)
+
+    def get_request_data(self):
+        dict_params = {
+            'время': self.send_datetime.strftime('%H:%M:%S %Y-%m-%d'),
+            'комманда': self.command.name,
+            'cid': self.cid
+        }
+        if self.argument:
+            dict_params['аргумент'] = self.argument
+        if self.device:
+            dict_params['устройство'] = self.device
+
+        return dict_params
 
 
 class Response(models.Model):
-    request = models.ForeignKey(Request, null=True, on_delete=models.DO_NOTHING)
+    request = models.OneToOneField(Request, null=True, on_delete=models.DO_NOTHING)
     response_body = models.CharField(max_length=1000)
 
 
@@ -106,6 +132,10 @@ class Schedule(models.Model):
     start_datetime = models.DateTimeField()
     end_datetime = models.DateTimeField()
     approved = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = 'Расписание'
+        verbose_name_plural = 'Расписание'
 
 
 class SessionRequests(models.Model):

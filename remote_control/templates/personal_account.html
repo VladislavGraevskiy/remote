@@ -1,10 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+{% load staticfiles %}
+{% load render_table from django_tables2 %}
 
-</body>
-</html>
+{% block account %}
+    <script type="text/javascript" src="{% static "/bower_components/moment/min/moment.min.js" %}"></script>
+    <script type="text/javascript"
+            src="{% static "/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js" %}"></script>
+    <link rel="stylesheet"
+          href="{% static "/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" %}"/>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker6').datetimepicker({
+                format: 'YYYY-MM-DD HH:mm:ss',
+                locale: 'ru',
+                stepping: 30,
+                minDate: moment(moment.now()).add('days', 3)
+            });
+        });
+    </script>
+    <link rel="stylesheet" href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}"/>
+    <div class="row">
+        <div class="col-md-8">
+{#            <div class="panel panel-info">#}
+{#                <h2 class="panel-heading">Данные</h2>#}
+{#                <div class="panel-body">#}
+                    <div class="panel">
+                        <div class="row">
+                            {#                            {% for i in s %}#}
+                            {#                                <div class="row">#}
+                            {#                                    {{ i.user }}#}
+                            {#                                </div>#}
+                            {#                            {% endfor %}#}
+                            {% render_table s %}
+
+
+{#                        </div>#}
+{#                    </div>#}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-info">
+                <h5 class="panel-heading">Бронирование времени</h5>
+                <div class="panel-body">
+                    <div class="container-fluid">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class='input-group date' id='datetimepicker6'>
+                                        <input type="text" name="start_datetime" class="form-control control"
+                                               id="id_start_datetime" placeholder="Начало сеанса">
+                                        <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="alert alert-warning" role="alert">
+                                    <a href="#" class="alert-link">Время работы с удаленным управление ограничего и
+                                        составляет 30 минут!</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <input type="submit" value="Запросить" class="btn btn-info btn-block">
+
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </body>
+    </html>
+{% endblock %}

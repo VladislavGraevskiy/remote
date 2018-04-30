@@ -9,7 +9,7 @@ from remote_control.constants import (
     CMD_SET_REAL_TIME, CMD_ENABLE_DEVICE, CMD_DISABLE_DEVICE, CMD_TRANSCEIVER_SELECT, CMD_DEVICE_COMMAND,
     CMD_RESERVE_MAIN_POWER_OFF, CMD_RESERVE_MAIN_POWER_ON, CMD_SOFT_SHUTDOWN
 )
-from remote_control.models.models import Commands
+from remote_control.models.models import Commands, Schedule
 
 CMD = (
     (CMD_MINIMAL, 'Перейти в режим работы с минимальным энергопотреблением'),
@@ -26,12 +26,20 @@ class Modes(forms.Form):
 
 
 class CommandsForm(ModelForm):
-    command = forms.ChoiceField(choices=Commands.get_command_name(), widget=forms.RadioSelect)
+    command = forms.ChoiceField(choices=Commands.get_command_name(), widget=forms.RadioSelect,)
+    device = forms.CharField(max_length=20, required=False)
+    argument = forms.CharField(max_length=20, required=False)
 
     class Meta:
         model = Commands
-        fields = ['command', 'category', 'device']
+        # fields = ['command', 'category', 'device', 'argument']
+        fields = ['command', 'device', 'argument']
 
+
+class ScheduleForm(ModelForm):
+    class Meta:
+        model = Schedule
+        fields = ['start_datetime']
     # def is_valid(self):
     #     pass
 

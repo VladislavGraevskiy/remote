@@ -11,5 +11,6 @@ urlpatterns = [
     url(r'^jet/', include('jet.urls', 'jet')),
 
     path('admin/', admin.site.urls),
-    path('api/', include('api.urls'))
+    path('default/', include('api.urls')),
+    # path('default/', views.main_page),
 ]

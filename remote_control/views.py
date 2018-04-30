@@ -1,3 +1,6 @@
+from datetime import timedelta
+
+from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.shortcuts import render_to_response, render, redirect
 # import requests
@@ -8,8 +11,10 @@ from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from remote_control.decorators import check_authorization
 from remote_control.forms.user import UserprofileForm, LoginUser
 from remote_control.fusioncharts import FusionCharts
-from remote_control.models.models import Commands, TelemetryFilter, Telemetry, Request
-from .forms.commands import Modes, CommandsForm
+from remote_control.models.models import Commands, TelemetryFilter, Telemetry, Request, Schedule
+from third_party.bsu_ground.api import send_command_to_api
+from third_party.bsu_ground.utils import forming_command_data
+from .forms.commands import Modes, CommandsForm, ScheduleForm
 
 
 def test_ground():
@@ -23,17 +28,31 @@ def send_command(request):
         form = CommandsForm(request.POST)
         if form.is_valid():
             command = form.cleaned_data.get('command')
-            command_obj = Commands.objects.get(command=command)
-            Request.objects.create(
-                user_id=request.user.id,
-                command_id=command_obj.id,
+
+            user_id = request.user.id
+            command = Commands.objects.get(command=command)
+            device = form.cleaned_data.get('device')
+            argument = form.cleaned_data.get('argument')
+            send_data = forming_command_data(command.command, argument, device)
+            request_command = Request.objects.create(
+                user_id=user_id,
+                command_id=command.id,
+                device=device,
+                argument=argument
             )
-            print(command)
+            response_json = send_command_to_api(send_data)
+            print(response_json)
+            request_command.cid = response_json.get('cid')
+            request_command.save()
+
             print('send_command valid')
         else:
             print(form.errors)
             print('send_command NOT VALID')
-    info = Request.objects.filter(user=request.user)
+    info_list = Request.objects.filter(user=request.user).order_by('-send_datetime')
+    paginator = Paginator(info_list, 6)
+    page = request.GET.get('page')
+    info = paginator.get_page(page)
     print([info])
     # form = Modes()
     form = CommandsForm()
@@ -118,3 +137,26 @@ def registration(request):
             {'userprofile': userprofile},
         )
 
+
+def personal_account(request):
+    if request.method == 'POST':
+        form = ScheduleForm(request.POST)
+        if form.is_valid():
+            schedule = form.save(commit=False)
+            schedule.user_id = request.user.id
+            schedule.end_datetime = form.cleaned_data.get('start_datetime')
+            # form.end_datetime = form.start_datetime + timedelta(minutes=29, seconds=59)
+            form.save()
+        else:
+            print(form.errors)
+    s = Schedule.objects.all()
+    print(s)
+    form = ScheduleForm()
+    return render(
+        request,
+        'personal_account.html',
+        {'form': form,
+         's': s
+         },
+
+    )
