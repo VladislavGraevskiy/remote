@@ -17,6 +17,10 @@ class Userprofile(BaseUser):
     registration_approved = models.BooleanField('Регистрация одобрена?', default=False)
     trust_level = models.IntegerField('Уровень доверия', default=3)
 
+    class Meta:
+        verbose_name = 'Пользователь'
+        verbose_name_plural = 'Пользователи'
+
     def pre_save(self):
         pass
 

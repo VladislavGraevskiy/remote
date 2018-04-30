@@ -12,6 +12,7 @@ from remote_control.decorators import check_authorization
 from remote_control.forms.user import UserprofileForm, LoginUser
 from remote_control.fusioncharts import FusionCharts
 from remote_control.models.models import Commands, TelemetryFilter, Telemetry, Request, Schedule
+from remote_control.models.user import Userprofile
 from third_party.bsu_ground.api import send_command_to_api
 from third_party.bsu_ground.utils import forming_command_data
 from .forms.commands import Modes, CommandsForm, ScheduleForm
@@ -41,23 +42,19 @@ def send_command(request):
                 argument=argument
             )
             response_json = send_command_to_api(send_data)
-            print(response_json)
             request_command.cid = response_json.get('cid')
             request_command.save()
-
-            print('send_command valid')
         else:
-            print(form.errors)
-            print('send_command NOT VALID')
+            pass
     info_list = Request.objects.filter(user=request.user).order_by('-send_datetime')
     paginator = Paginator(info_list, 6)
     page = request.GET.get('page')
     info = paginator.get_page(page)
-    print([info])
-    # form = Modes()
-    form = CommandsForm()
-    command = request.POST.get('command')
-    print([form])
+
+    user_id = request.user.id
+    trust_level = Userprofile.objects.get(id=user_id).trust_level
+    form = CommandsForm(trust_level=trust_level)
+
     return render(
         request,
         'send_command.html',
